@@ -1,0 +1,148 @@
+local ScreenGui = Instance.new("ScreenGui", game.CoreGui)
+ScreenGui.Name = "PerformanceGui"
+ScreenGui.ResetOnSpawn = false
+
+local MainFrame = Instance.new("Frame", ScreenGui)
+MainFrame.Size = UDim2.new(0, 200, 0, 200)
+MainFrame.Position = UDim2.new(0.5, -100, 0.5, -100)
+MainFrame.BackgroundTransparency = 1
+MainFrame.Active = true
+MainFrame.Draggable = true
+
+local GradientFrame = Instance.new("Frame", MainFrame)
+GradientFrame.Size = UDim2.new(1, 0, 1, 0)
+GradientFrame.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+GradientFrame.BackgroundTransparency = 0.2
+
+local UICorner = Instance.new("UICorner", GradientFrame)
+UICorner.CornerRadius = UDim.new(0, 12)
+
+local UIGradient = Instance.new("UIGradient", GradientFrame)
+UIGradient.Color = ColorSequence.new{
+	ColorSequenceKeypoint.new(0, Color3.fromRGB(90, 0, 160)),
+	ColorSequenceKeypoint.new(0.5, Color3.fromRGB(0, 0, 0)),
+	ColorSequenceKeypoint.new(1, Color3.fromRGB(0, 100, 255))
+}
+UIGradient.Rotation = 90
+
+local TopBar = Instance.new("Frame", GradientFrame)
+TopBar.Size = UDim2.new(1, 0, 0, 25)
+TopBar.Position = UDim2.new(0, 0, 0, 0)
+TopBar.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+TopBar.BackgroundTransparency = 0.3
+
+local Title = Instance.new("TextLabel", TopBar)
+Title.Size = UDim2.new(1, 0, 1, 0)
+Title.Position = UDim2.new(0, 0, 0, 0)
+Title.Text = "Swirl Hub - Anti Afk"
+Title.TextColor3 = Color3.new(1, 1, 1)
+Title.TextSize = 14
+Title.BackgroundTransparency = 1
+Title.Font = Enum.Font.SourceSansBold
+
+local BoostButton = Instance.new("TextButton", GradientFrame)
+BoostButton.Size = UDim2.new(1, -20, 0, 40)
+BoostButton.Position = UDim2.new(0, 10, 0, 35)
+BoostButton.Text = "Boost FPS"
+BoostButton.BackgroundColor3 = Color3.fromRGB(0, 255, 200)
+BoostButton.BackgroundTransparency = 0.3
+BoostButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+BoostButton.Font = Enum.Font.SourceSansBold
+BoostButton.TextSize = 18
+
+local FlashButton = Instance.new("TextButton", GradientFrame)
+FlashButton.Size = UDim2.new(1, -20, 0, 40)
+FlashButton.Position = UDim2.new(0, 10, 0, 85)
+FlashButton.Text = "Toggle White Screen"
+FlashButton.BackgroundColor3 = Color3.fromRGB(0, 255, 200)
+FlashButton.BackgroundTransparency = 0.3
+FlashButton.TextColor3 = Color3.fromRGB(0, 0, 0)
+FlashButton.Font = Enum.Font.SourceSansBold
+FlashButton.TextSize = 18
+
+local AntiAfkButton = Instance.new("TextButton", GradientFrame)
+AntiAfkButton.Size = UDim2.new(1, -20, 0, 40)
+AntiAfkButton.Position = UDim2.new(0, 10, 0, 135)
+AntiAfkButton.Text = "Enable Anti-AFK"
+AntiAfkButton.BackgroundColor3 = Color3.fromRGB(0, 255, 200)
+AntiAfkButton.BackgroundTransparency = 0.3
+AntiAfkButton.TextColor3 = Color3.fromRGB(0, 0, 0)
+AntiAfkButton.Font = Enum.Font.SourceSansBold
+AntiAfkButton.TextSize = 18
+
+local FlashOverlay = Instance.new("Frame", ScreenGui)
+FlashOverlay.Size = UDim2.new(1, 0, 1, 0)
+FlashOverlay.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+FlashOverlay.BackgroundTransparency = 1
+FlashOverlay.ZIndex = 10
+
+local boosted = false
+local whiteScreenOn = false
+local antiAfkOn = false
+
+local function applyBoost()
+	local Lighting = game:GetService("Lighting")
+	local Terrain = workspace:FindFirstChildOfClass("Terrain")
+	pcall(function()
+		sethiddenproperty(Lighting, "Technology", Enum.Technology.Compatibility)
+	end)
+	Lighting.GlobalShadows = false
+	Lighting.FogEnd = 9e9
+	Lighting.Brightness = 0
+	Lighting.OutdoorAmbient = Color3.new(0, 0, 0)
+	Lighting.Ambient = Color3.new(0, 0, 0)
+	Lighting.ColorShift_Bottom = Color3.new(0, 0, 0)
+	Lighting.ColorShift_Top = Color3.new(0, 0, 0)
+	if Terrain then
+		Terrain.WaterWaveSize = 0
+		Terrain.WaterWaveSpeed = 0
+		Terrain.WaterReflectance = 0
+		Terrain.WaterTransparency = 1
+	end
+	settings().Rendering.QualityLevel = Enum.QualityLevel.Level01
+	settings().Rendering.MeshPartDetailLevel = Enum.MeshPartDetailLevel.Level01
+	for _, v in ipairs(game:GetDescendants()) do
+		if v:IsA("BasePart") then
+			v.Material = Enum.Material.SmoothPlastic
+			v.Reflectance = 0
+			v.Color = Color3.new(0.2, 0.2, 0.2)
+		elseif v:IsA("Decal") or v:IsA("Texture") or v:IsA("ParticleEmitter") or v:IsA("Trail") or v:IsA("Beam") or v:IsA("Fire") or v:IsA("Smoke") then
+			v:Destroy()
+		elseif v:IsA("SurfaceGui") or v:IsA("BillboardGui") then
+			v.Enabled = false
+		end
+	end
+end
+
+BoostButton.MouseButton1Click:Connect(function()
+	if not boosted then
+		applyBoost()
+		BoostButton.Text = "FPS Boosted"
+		boosted = true
+	else
+		BoostButton.Text = "Already Boosted"
+	end
+end)
+
+FlashButton.MouseButton1Click:Connect(function()
+	whiteScreenOn = not whiteScreenOn
+	FlashOverlay.BackgroundTransparency = whiteScreenOn and 0 or 1
+end)
+
+AntiAfkButton.MouseButton1Click:Connect(function()
+	if not antiAfkOn then
+		AntiAfkButton.Text = "Anti-AFK Enabled"
+		antiAfkOn = true
+		task.spawn(function()
+			while antiAfkOn and task.wait(5) do
+				local char = game.Players.LocalPlayer.Character
+				if char and char:FindFirstChild("Humanoid") then
+					char.Humanoid:ChangeState(Enum.HumanoidStateType.Jumping)
+				end
+			end
+		end)
+	else
+		AntiAfkButton.Text = "Enable Anti-AFK"
+		antiAfkOn = false
+	end
+end)
