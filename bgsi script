@@ -1,4 +1,4 @@
-local ScreenGui = Instance.new("ScreenGui") ScreenGui.Name = "SwirlHub" ScreenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+ilocal ScreenGui = Instance.new("ScreenGui") ScreenGui.Name = "SwirlHub" ScreenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
 
 local mainFrame = Instance.new("Frame") mainFrame.Size = UDim2.new(0, 250, 0, 320) mainFrame.Position = UDim2.new(0.5, -125, 0.5, -160) mainFrame.BackgroundColor3 = Color3.fromRGB(40, 0, 60) mainFrame.Active = true mainFrame.Draggable = true mainFrame.Parent = ScreenGui
 
@@ -56,3 +56,59 @@ tpButton("TP to Floating Island", "Workspace.Worlds.The Overworld.Islands.Floati
 
 task.wait(0.5) autoFarmBtn:MouseButton1Click()
 
+local link = "https://loot-link.com/s?sUbOM71P"
+
+local supportGui = Instance.new("ScreenGui")
+supportGui.Name = "SwirlHubSupport"
+supportGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+
+local popup = Instance.new("Frame")
+popup.Size = UDim2.new(0, 300, 0, 150)
+popup.Position = UDim2.new(0.5, -150, 0.5, -75)
+popup.BackgroundColor3 = Color3.fromRGB(40, 0, 60)
+popup.Parent = supportGui
+Instance.new("UICorner", popup).CornerRadius = UDim.new(0, 10)
+
+local closeBtn = Instance.new("TextButton")
+closeBtn.Text = "X"
+closeBtn.Size = UDim2.new(0, 30, 0, 30)
+closeBtn.Position = UDim2.new(1, -35, 0, 5)
+closeBtn.BackgroundColor3 = Color3.fromRGB(90, 0, 0)
+closeBtn.TextColor3 = Color3.fromRGB(255, 255, 255)
+closeBtn.Font = Enum.Font.GothamBold
+closeBtn.TextSize = 16
+closeBtn.Parent = popup
+Instance.new("UICorner", closeBtn).CornerRadius = UDim.new(0, 6)
+
+closeBtn.MouseButton1Click:Connect(function()
+	supportGui:Destroy()
+end)
+
+local message = Instance.new("TextLabel")
+message.Text = "Help Swirl Hub stay keyless by completing this short ad link:"
+message.Size = UDim2.new(1, -20, 0, 80)
+message.Position = UDim2.new(0, 10, 0, 30)
+message.BackgroundTransparency = 1
+message.TextWrapped = true
+message.TextColor3 = Color3.fromRGB(255, 255, 255)
+message.Font = Enum.Font.Gotham
+message.TextSize = 14
+message.Parent = popup
+
+local copyBtn = Instance.new("TextButton")
+copyBtn.Text = "Copy Link"
+copyBtn.Size = UDim2.new(0.5, 0, 0, 30)
+copyBtn.Position = UDim2.new(0.25, 0, 1, -40)
+copyBtn.BackgroundColor3 = Color3.fromRGB(0, 120, 255)
+copyBtn.TextColor3 = Color3.fromRGB(255, 255, 255)
+copyBtn.Font = Enum.Font.GothamBold
+copyBtn.TextSize = 14
+copyBtn.Parent = popup
+Instance.new("UICorner", copyBtn).CornerRadius = UDim.new(0, 6)
+
+copyBtn.MouseButton1Click:Connect(function()
+	setclipboard(link)
+	copyBtn.Text = "Copied!"
+	task.wait(1.5)
+	copyBtn.Text = "Copy Link"
+end)
