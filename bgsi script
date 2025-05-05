@@ -1,167 +1,58 @@
-local ScreenGui = Instance.new("ScreenGui")
-ScreenGui.Name = "SwirlHub"
-ScreenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+local ScreenGui = Instance.new("ScreenGui") ScreenGui.Name = "SwirlHub" ScreenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
 
-local mainFrame = Instance.new("Frame")
-mainFrame.Size = UDim2.new(0, 250, 0, 320)
-mainFrame.Position = UDim2.new(0.5, -125, 0.5, -160)
-mainFrame.BackgroundColor3 = Color3.fromRGB(40, 0, 60)
-mainFrame.Active = true
-mainFrame.Draggable = true
-mainFrame.Parent = ScreenGui
+local mainFrame = Instance.new("Frame") mainFrame.Size = UDim2.new(0, 250, 0, 320) mainFrame.Position = UDim2.new(0.5, -125, 0.5, -160) mainFrame.BackgroundColor3 = Color3.fromRGB(40, 0, 60) mainFrame.Active = true mainFrame.Draggable = true mainFrame.Parent = ScreenGui
 
-Instance.new("UICorner", mainFrame).CornerRadius = UDim.new(0, 10)
-local gradient = Instance.new("UIGradient", mainFrame)
-gradient.Color = ColorSequence.new{
-	ColorSequenceKeypoint.new(0, Color3.fromRGB(0, 0, 255)),
-	ColorSequenceKeypoint.new(1, Color3.fromRGB(128, 0, 128))
-}
+Instance.new("UICorner", mainFrame).CornerRadius = UDim.new(0, 10) local gradient = Instance.new("UIGradient", mainFrame) gradient.Color = ColorSequence.new{ ColorSequenceKeypoint.new(0, Color3.fromRGB(0, 0, 255)), ColorSequenceKeypoint.new(1, Color3.fromRGB(128, 0, 128)) }
 
-local topBar = Instance.new("TextLabel")
-topBar.Text = "Swirl Hub - BGSI"
-topBar.Size = UDim2.new(1, 0, 0, 30)
-topBar.BackgroundColor3 = Color3.fromRGB(30, 0, 50)
-topBar.TextColor3 = Color3.fromRGB(255, 255, 255)
-topBar.Font = Enum.Font.GothamBold
-topBar.TextSize = 16
-topBar.Parent = mainFrame
-Instance.new("UICorner", topBar).CornerRadius = UDim.new(0, 8)
+local topBar = Instance.new("TextLabel") topBar.Text = "Swirl Hub - BGSI" topBar.Size = UDim2.new(1, 0, 0, 30) topBar.BackgroundColor3 = Color3.fromRGB(30, 0, 50) topBar.TextColor3 = Color3.fromRGB(255, 255, 255) topBar.Font = Enum.Font.GothamBold topBar.TextSize = 16 topBar.Parent = mainFrame Instance.new("UICorner", topBar).CornerRadius = UDim.new(0, 8)
 
-local tabFrame = Instance.new("Frame")
-tabFrame.Size = UDim2.new(1, 0, 0, 30)
-tabFrame.Position = UDim2.new(0, 0, 0, 30)
-tabFrame.BackgroundTransparency = 1
-tabFrame.Parent = mainFrame
+local tabFrame = Instance.new("Frame") tabFrame.Size = UDim2.new(1, 0, 0, 30) tabFrame.Position = UDim2.new(0, 0, 0, 30) tabFrame.BackgroundTransparency = 1 tabFrame.Parent = mainFrame
 
-local autofarmBtn = Instance.new("TextButton")
-autofarmBtn.Text = "AutoFarm"
-autofarmBtn.Size = UDim2.new(0.5, 0, 1, 0)
-autofarmBtn.Position = UDim2.new(0, 0, 0, 0)
-autofarmBtn.BackgroundColor3 = Color3.fromRGB(60, 0, 90)
-autofarmBtn.TextColor3 = Color3.fromRGB(255, 255, 255)
-autofarmBtn.Font = Enum.Font.Gotham
-autofarmBtn.TextSize = 14
-autofarmBtn.Parent = tabFrame
-Instance.new("UICorner", autofarmBtn)
+local autofarmBtn = Instance.new("TextButton") autofarmBtn.Text = "AutoFarm" autofarmBtn.Size = UDim2.new(0.5, 0, 1, 0) autofarmBtn.Position = UDim2.new(0, 0, 0, 0) autofarmBtn.BackgroundColor3 = Color3.fromRGB(60, 0, 90) autofarmBtn.TextColor3 = Color3.fromRGB(255, 255, 255) autofarmBtn.Font = Enum.Font.Gotham autofarmBtn.TextSize = 14 autofarmBtn.Parent = tabFrame Instance.new("UICorner", autofarmBtn)
 
-local teleportBtn = Instance.new("TextButton")
-teleportBtn.Text = "Teleport"
-teleportBtn.Size = UDim2.new(0.5, 0, 1, 0)
-teleportBtn.Position = UDim2.new(0.5, 0, 0, 0)
-teleportBtn.BackgroundColor3 = Color3.fromRGB(60, 0, 90)
-teleportBtn.TextColor3 = Color3.fromRGB(255, 255, 255)
-teleportBtn.Font = Enum.Font.Gotham
-teleportBtn.TextSize = 14
-teleportBtn.Parent = tabFrame
-Instance.new("UICorner", teleportBtn)
+local teleportBtn = Instance.new("TextButton") teleportBtn.Text = "Teleport" teleportBtn.Size = UDim2.new(0.5, 0, 1, 0) teleportBtn.Position = UDim2.new(0.5, 0, 0, 0) teleportBtn.BackgroundColor3 = Color3.fromRGB(60, 0, 90) teleportBtn.TextColor3 = Color3.fromRGB(255, 255, 255) teleportBtn.Font = Enum.Font.Gotham teleportBtn.TextSize = 14 teleportBtn.Parent = tabFrame Instance.new("UICorner", teleportBtn)
 
-local autofarmTab = Instance.new("Frame")
-autofarmTab.Size = UDim2.new(1, 0, 1, -60)
-autofarmTab.Position = UDim2.new(0, 0, 0, 60)
-autofarmTab.BackgroundTransparency = 1
-autofarmTab.Parent = mainFrame
+local autofarmTab = Instance.new("Frame") autofarmTab.Size = UDim2.new(1, 0, 1, -60) autofarmTab.Position = UDim2.new(0, 0, 0, 60) autofarmTab.BackgroundTransparency = 1 autofarmTab.Parent = mainFrame
 
-local teleportTab = autofarmTab:Clone()
-teleportTab.Parent = mainFrame
-teleportTab.Visible = false
+local teleportTab = autofarmTab:Clone() teleportTab.Parent = mainFrame teleportTab.Visible = false
 
-autofarmBtn.MouseButton1Click:Connect(function()
-	autofarmTab.Visible = true
-	teleportTab.Visible = false
-end)
+autofarmBtn.MouseButton1Click:Connect(function() autofarmTab.Visible = true teleportTab.Visible = false end)
 
-teleportBtn.MouseButton1Click:Connect(function()
-	autofarmTab.Visible = false
-	teleportTab.Visible = true
-end)
+teleportBtn.MouseButton1Click:Connect(function() autofarmTab.Visible = false teleportTab.Visible = true end)
 
-local function createButton(text, y, parent)
-	local btn = Instance.new("TextButton")
-	btn.Text = text
-	btn.Size = UDim2.new(1, -20, 0, 30)
-	btn.Position = UDim2.new(0, 10, 0, y)
-	btn.BackgroundColor3 = Color3.fromRGB(80, 0, 110)
-	btn.TextColor3 = Color3.fromRGB(255, 255, 255)
-	btn.Font = Enum.Font.Gotham
-	btn.TextSize = 14
-	btn.Parent = parent
-	Instance.new("UICorner", btn).CornerRadius = UDim.new(0, 6)
-	return btn
-end
+local function createButton(text, y, parent) local btn = Instance.new("TextButton") btn.Text = text btn.Size = UDim2.new(1, -20, 0, 30) btn.Position = UDim2.new(0, 10, 0, y) btn.BackgroundColor3 = Color3.fromRGB(80, 0, 110) btn.TextColor3 = Color3.fromRGB(255, 255, 255) btn.Font = Enum.Font.Gotham btn.TextSize = 14 btn.Parent = parent Instance.new("UICorner", btn).CornerRadius = UDim.new(0, 6) return btn end
 
-local autoBlow = false
-local autoSell = false
-local generalAuto = false
+local autoBlow = false local autoSell = false local generalAuto = false local autoPlaytime = false
 
-local blowBtn = createButton("Auto Blow: OFF", 10, autofarmTab)
-local sellBtn = createButton("Auto Sell: OFF", 50, autofarmTab)
-local autoFarmBtn = createButton("AutoFarm: OFF", 90, autofarmTab)
+local blowBtn = createButton("Auto Blow: OFF", 10, autofarmTab) local sellBtn = createButton("Auto Sell: OFF", 50, autofarmTab) local autoFarmBtn = createButton("AutoFarm: OFF", 90, autofarmTab) local playtimeBtn = createButton("Auto Playtime Gifts: OFF", 130, autofarmTab)
 
-blowBtn.MouseButton1Click:Connect(function()
-	if generalAuto then return end
-	autoBlow = not autoBlow
-	blowBtn.Text = "Auto Blow: " .. (autoBlow and "ON" or "OFF")
-	if autoBlow then
-		task.spawn(function()
-			while autoBlow do
-				local args = {"BlowBubble"}
-				game:GetService("ReplicatedStorage").Shared.Framework.Network.Remote.Event:FireServer(unpack(args))
-				wait(0.1)
-			end
-		end)
-	end
-end)
+blowBtn.MouseButton1Click:Connect(function() if generalAuto then return end autoBlow = not autoBlow blowBtn.Text = "Auto Blow: " .. (autoBlow and "ON" or "OFF") if autoBlow then task.spawn(function() while autoBlow do local args = {"BlowBubble"} game:GetService("ReplicatedStorage").Shared.Framework.Network.Remote.Event:FireServer(unpack(args)) wait(0.1) end end) end end)
 
-sellBtn.MouseButton1Click:Connect(function()
-	if generalAuto then return end
-	autoSell = not autoSell
-	sellBtn.Text = "Auto Sell: " .. (autoSell and "ON" or "OFF")
-	if autoSell then
-		task.spawn(function()
-			while autoSell do
-				local args = {"SellBubble"}
-				game:GetService("ReplicatedStorage").Shared.Framework.Network.Remote.Event:FireServer(unpack(args))
-				wait(0.1)
-			end
-		end)
-	end
-end)
+sellBtn.MouseButton1Click:Connect(function() if generalAuto then return end autoSell = not autoSell sellBtn.Text = "Auto Sell: " .. (autoSell and "ON" or "OFF") if autoSell then task.spawn(function() while autoSell do local args = {"SellBubble"} game:GetService("ReplicatedStorage").Shared.Framework.Network.Remote.Event:FireServer(unpack(args)) wait(0.1) end end) end end)
 
-autoFarmBtn.MouseButton1Click:Connect(function()
-	generalAuto = not generalAuto
-	autoBlow = generalAuto
-	autoSell = generalAuto
+autoFarmBtn.MouseButton1Click:Connect(function() generalAuto = not generalAuto autoBlow = generalAuto autoSell = generalAuto
 
-	blowBtn.Text = "Auto Blow: " .. (generalAuto and "ON" or "OFF")
-	sellBtn.Text = "Auto Sell: " .. (generalAuto and "ON" or "OFF")
-	autoFarmBtn.Text = "AutoFarm: " .. (generalAuto and "ON" or "OFF")
+blowBtn.Text = "Auto Blow: " .. (generalAuto and "ON" or "OFF")
+sellBtn.Text = "Auto Sell: " .. (generalAuto and "ON" or "OFF")
+autoFarmBtn.Text = "AutoFarm: " .. (generalAuto and "ON" or "OFF")
 
-	if generalAuto then
-		task.spawn(function()
-			while generalAuto do
-				game:GetService("ReplicatedStorage").Shared.Framework.Network.Remote.Event:FireServer("BlowBubble")
-				game:GetService("ReplicatedStorage").Shared.Framework.Network.Remote.Event:FireServer("SellBubble")
-				wait(0.1)
-			end
-		end)
-	end
-end)
-
-local yOffset = 10
-local function tpButton(label, path)
-	local btn = createButton(label, yOffset, teleportTab)
-	btn.MouseButton1Click:Connect(function()
-		game:GetService("ReplicatedStorage").Shared.Framework.Network.Remote.Event:FireServer("Teleport", path)
+if generalAuto then
+	task.spawn(function()
+		while generalAuto do
+			game:GetService("ReplicatedStorage").Shared.Framework.Network.Remote.Event:FireServer("BlowBubble")
+			game:GetService("ReplicatedStorage").Shared.Framework.Network.Remote.Event:FireServer("SellBubble")
+			wait(0.1)
+		end
 	end)
-	yOffset += 40
 end
 
-tpButton("TP to Floating Island", "Workspace.Worlds.The Overworld.Islands.Floating Island.Island.Portal.Spawn")
-tpButton("TP to Outer Space", "Workspace.Worlds.The Overworld.Islands.Outer Space.Island.Portal.Spawn")
-tpButton("TP to Twilight", "Workspace.Worlds.The Overworld.Islands.Twilight.Island.Portal.Spawn")
-tpButton("TP to The Void", "Workspace.Worlds.The Overworld.Islands.The Void.Island.Portal.Spawn")
-tpButton("TP to Zen", "Workspace.Worlds.The Overworld.Islands.Zen.Island.Portal.Spawn")
-tpButton("TP to Portals", "Workspace.Worlds.The Overworld.PortalSpawn")
+end)
 
-task.wait(0.5)
-autoFarmBtn:MouseButton1Click()
+playtimeBtn.MouseButton1Click:Connect(function() autoPlaytime = not autoPlaytime playtimeBtn.Text = "Auto Playtime Gifts: " .. (autoPlaytime and "ON" or "OFF") if autoPlaytime then task.spawn(function() while autoPlaytime do for i = 1, 9 do pcall(function() local args = {"ClaimPlaytime", i} game:GetService("ReplicatedStorage"):WaitForChild("Shared"):WaitForChild("Framework"):WaitForChild("Network"):WaitForChild("Remote"):WaitForChild("Function"):InvokeServer(unpack(args)) end) wait(1) end wait(5) end end) end end)
+
+local yOffset = 10 local function tpButton(label, path) local btn = createButton(label, yOffset, teleportTab) btn.MouseButton1Click:Connect(function() game:GetService("ReplicatedStorage").Shared.Framework.Network.Remote.Event:FireServer("Teleport", path) end) yOffset += 40 end
+
+tpButton("TP to Floating Island", "Workspace.Worlds.The Overworld.Islands.Floating Island.Island.Portal.Spawn") tpButton("TP to Outer Space", "Workspace.Worlds.The Overworld.Islands.Outer Space.Island.Portal.Spawn") tpButton("TP to Twilight", "Workspace.Worlds.The Overworld.Islands.Twilight.Island.Portal.Spawn") tpButton("TP to The Void", "Workspace.Worlds.The Overworld.Islands.The Void.Island.Portal.Spawn") tpButton("TP to Zen", "Workspace.Worlds.The Overworld.Islands.Zen.Island.Portal.Spawn") tpButton("TP to Portals", "Workspace.Worlds.The Overworld.PortalSpawn")
+
+task.wait(0.5) autoFarmBtn:MouseButton1Click()
+
