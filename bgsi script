@@ -1,4 +1,4 @@
-ilocal ScreenGui = Instance.new("ScreenGui") ScreenGui.Name = "SwirlHub" ScreenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+local ScreenGui = Instance.new("ScreenGui") ScreenGui.Name = "SwirlHub" ScreenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
 
 local mainFrame = Instance.new("Frame") mainFrame.Size = UDim2.new(0, 250, 0, 320) mainFrame.Position = UDim2.new(0.5, -125, 0.5, -160) mainFrame.BackgroundColor3 = Color3.fromRGB(40, 0, 60) mainFrame.Active = true mainFrame.Draggable = true mainFrame.Parent = ScreenGui
 
